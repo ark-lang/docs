@@ -20,12 +20,6 @@
 * [Arrays](arrays.md)
 * [Slices](slices.md)
 * [Modules and Dependencies](modules.md)
-* [Ownership](ownership.md)
-   * [Transferring Ownership](transferring_ownership.md)
-   * [Borrowing](borrowing.md)
-       * [References](references.md)
-       * [Reference Lifetime](reference_lifetime.md)
-       * [Explicit Lifetimes](explicit_lifetimes.md)
 * [Memory Allocation](memory_allocation.md)
 * Control Flow
    * [If Statements](if_statements.md)
