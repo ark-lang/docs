@@ -1,20 +1,12 @@
-# Introduction
+# Ark Documentation
+This is the _WIP_ documentation for the Ark programming language. It serves
+as a formal introduction and overview of the language, though it is not
+an in-depth technical look at the internals of the compiler.
 
-> This is a work in progress reference, there will be errors present! This book
-> is open source and licensed under MIT; if you spot any errors, feel free to 
-> send a PR!
-
-This is the official reference for the [Ark programming language](github.com/ark-lang/ark). Note that this
-document is not final and could change at any point, as could the compiler
-itself, which means that the reference could become out-dated. We try
-to avoid changes that break a lot of compatibility, or involve a lot of
-re-factoring in the code. Yet, considering the
-stage of the compiler, it's inevitable that things will break.
-
-This file serves as a reference to the language, however it can be used as
-an introduction to the language, though it is not written to be read as one. If
-you are familiar with other languages like C, Rust, C++, Go, ... then most of
-this document should be easy to use as a cheat sheet.
+If you are a beginner or an experienced programmer, you should be able
+to work through this documentation and understand how to program Ark
+applications. You can find a (potentially outdated version) of the
+documentation [here](//book.ark-lang.org).
 
 ## Resources
 * [Website](https://ark-lang.org)
