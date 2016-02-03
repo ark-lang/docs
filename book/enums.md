@@ -1,6 +1,4 @@
 # Tagged Unions
-![Feature Implemented](Badge_Implemented.svg)
-
 An enum in Ark is what some may refer to as a tagged union, this allows for
 multiple variants: with no data, with named (tagged) data,
 and variants with unnamed data (anonymous data).
@@ -55,9 +53,9 @@ func main() -> int {
 	z := Tree::Node{left: &x, right: &y};
 
     // print out the tree contents.
-    C::printf("Leaf-tag: %d\n", x);
-    C::printf("Leaf-tag: %d\n", y);
-    C::printf("Node-tag: %d\n", z);
+    C::printf(c"Leaf-tag: %d\n", x);
+    C::printf(c"Leaf-tag: %d\n", y);
+    C::printf(c"Node-tag: %d\n", z);
     return 0;
 }
 ```

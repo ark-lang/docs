@@ -1,49 +1,20 @@
-# Variable Declarations
-![Feature Implemented](Badge_Implemented.svg)
+# Variables
+A variable is a declaration that binds an expression to an identifier. By default, the compiler assumes any variable defined is immutable, i.e. it cannot be changed.
 
-A variable is a binding of an expression to a pattern, a variable can either be
-_mutable_ or _immutable_. Ark treats mutability differently than other
-languages, variables are immutable by default, i.e. they are constant and
-cannot be changed.
+	x: int = 10;
 
-Variables are defined in two ways:
+In the example above, we define a variable `x`, and bind the expression `5`. This variable is immutable, which means that the following is _illegal_:
 
-* the type is labelled explicitly
-* the type is excluded, and the compiler infers it 
+	x: int = 10;
+	x = 32; // ERROR
 
-The syntax for a variable is the name of the variable, followed by a colon (`:`
-), an optional type, an assignment operator (`=`), and an expression to assign 
-to the variable. 
+To allow for mutability, prefix the variable declaration with the `mut` keyword:
 
-## Mutability
-Note that because variables are __immutable__ by default, 
-they **must** have an assignment.
+	mut x: int = 10;
+	x = 32; // :)
 
-To allow the mutation of a variable, you prepend the variable declaration with the `mut` keyword. If a variable is mutable, it does **not** need an initial
-expression to be assigned to it. However, if a variable is **immutable**, this means it is constant and cannot be changed, therefore it needs an initial value.
+Type Inference is supported, it is specified by omitting the type of the variable:
 
-```
-// constant variable, must have an initial value
-x: int = 5; // [ "mut" ] Iden ":" Type [ "=" Expr ];
-// mutable variable, initial value is optional
-mut x: int;
-// constant inferred variable, the type is inferred from the expression
-x := 5;
-// mutable inferred variable, the type is inferred from the expression
-mut x := 5;
-```
-
-Remember that because something is mutable, it can later be re-assigned to
-another value:
-
-```
-mut x: int = 5;
-x = 10;
-
-y: int = 10;
-y = 20; // ERROR!
-```
-
-In the second example above, it causes a compile-time error because we are
-trying to re-assign an immutable variable. We can solve this by putting the `mut`
-keyword before the variable declaration.
+	mut y := 10;
+	x := 15;
+	y = y + x;

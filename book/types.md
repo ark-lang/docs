@@ -1,20 +1,16 @@
 # Types
-![Feature Implemented](Badge_Implemented.svg)
-
-There are many primitive types in Ark, as well as structures that allow you to
-define custom types in the language, and binding a type to a name.
+There are many primitive types in Ark, as well as structures that allow you to define custom types in the language, and binding a type to a name.
 
 ## General Purpose Types
 
-These are the more general purpose types that we suggest you use for maximum
-portability.
+These are the more general purpose types that we suggest you use for portability.
 
 |Type|Description|
 |----|-----------|
 |int|register-sized signed integer|
 |uint|register-sized unsigned integer|
 |bool|1 bit (though it will possibly expand to 8 bit on x64, and 4 bit on x32)|
-|rune|signed 32 bits, used for holding a Unicode codepoint|
+|rune|signed 32 bits, used for Unicode codepoint|
 |string|a pascal-style string, contains the string and length of the string|
 
 The `C` pseudo-module contains the additional types `int` and `uint` which
@@ -50,7 +46,7 @@ expression to cast.
 
     x: int = int(4.5); // becomes 4
     
-Variables can also be casted:
+Variables can also be cast, or any expression for that matter:
 
     y: f64 = 4.5;
     x: int = int(y);

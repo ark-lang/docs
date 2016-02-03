@@ -1,6 +1,4 @@
 # If Statements
-![Feature Implemented](Badge_Implemented.svg)
-
 An if statement is denoted with the `if` keyword, followed by a condition and
 a block of statements to execute.
 

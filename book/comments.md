@@ -1,13 +1,4 @@
 # Comments
-![Feature Implemented](Badge_Implemented.svg)
-
-There are two types of comments in Ark:
-
-* single line comments
-* multiple line comments
-
-However there are a few rules when commenting that you should follow, as
-well as a few extra things Ark allows you to do.
 
 ## Single Line Comments
 A single line comment is denoted with two forward slashes `//`.
