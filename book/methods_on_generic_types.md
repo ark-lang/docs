@@ -1,6 +1,4 @@
 # Methods on Generic Types
-![Feature In Progress](Badge_InProgress.svg)
-
 Continuing from the previous example you might notice something missing. How 
 are you supposed to actually use the structure without copy-pasting code everywhere? Usually you would implement a method on the structure, but would 
 that work here? Luckily methods can be declared on generic types aswell with 

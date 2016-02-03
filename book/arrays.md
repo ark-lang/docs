@@ -1,18 +1,9 @@
 # Arrays
-![Feature Implemented](Badge_Implemented.svg)
-
-An array is a static collection of values that have a uniform type. Arrays are 
-denoted with square brackets, or "blocks". Arrays are accessed using subscript
-notation. An arrays size should be known at compile-time, you can specify this
-in the initialiser by either setting the arrays initial values, and letting
-the compiler deduce the size of the array, or using the size
-initializer syntax:
-
-> While this implemented, the syntax is currently being reviewed
-> for change: [RFC #17](https://github.com/ark-lang/rfcs/issues/16)
+An array is a static collection of values that have a uniform type. Arrays are  denoted with square brackets, or "blocks". Arrays are accessed using subscript notation. An arrays size should be known at compile-time, you can specify this in the initialiser by either setting the arrays initial values, and letting the compiler deduce the size of the array, or using the size initializer syntax:
 
 ```
-a: []int = [0, 1, 2, 3, 4]; // size deduced, size in type is superfluous
+a: []int = [0, 1, 2, 3, 4]; // size inferred from initialize
+							// size in the type is superfluous
 b: []int; // ERROR! no initial value, no size!
 mut c: [5]int; // compiler will zero out 5 contiguous slots of memory
 ```
@@ -29,14 +20,17 @@ c[1] = a[2]; // and setting array values too
 ```
 
 ## Array Length
-To get the length of an array, use the hash symbol `#` followed by an array literal
-or an array binding. The array length operator will be an unsigned integer, so
-it should be stored as such.
+To get the length of an array, use the len builtin `len` followed by an array literal or an array binding. The array length operator will be an unsigned integer, so it should be stored as such.
 
 ```
 some_array := [0, 1, 2, 3];
-x: uint = #[0, 1, 2, 3]; // stores 4
-y: uint = #some_array;
+x: uint = len([0, 1, 2, 3]); // stores 4
+y: uint = len(some_array);
+
+mut i: uint = 0;
+for i < y {
+	i += 1;
+}
 ```
 
 ## Bounds Checking

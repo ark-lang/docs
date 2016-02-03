@@ -10,8 +10,8 @@ to 4. An inclusive range is denoted with two dots and an equals symbol, e.g.
 Multiple values can be matched using commas:
 
     match x {
-        1, 2 => ...; // both 1 and 2
-        _ => ...; // everything else
+        1, 2 -> ...; // both 1 and 2
+        _ -> ...; // everything else
     }
 
 ## Underscore
@@ -24,10 +24,14 @@ can bind it in the arm instead of re-evaluating the expression or binding it
 beforehand:
 
 ```
-func age() -> s32 => return 17;
+func age() -> s32 {
+	return 17;	
+}
 
-match age() {
-    age @ 17 => println("felix's age is %d", age);
-    age => println("vedant's age is ", age);
+func foo() {
+	match age() {
+	    age @ 17 => println("felix's age is %d", age);
+	    age => println("vedant's age is ", age);
+	}
 }
 ```

@@ -1,145 +1,118 @@
 # Functions
-![Feature Implemented](Badge_Implemented.svg)
-
-Ark programs will have, at the least, one function; the main function.
-This is the entry point of the program, i.e. where the execution of the program
-will begin.
+You will have at least one function in your program, the `main` function. The main function is the entry point of your program, it _must_ return an `int`.
 
     func main() -> int {
-        ...
+        return 0;
     }
 
 ## Declaring Functions
-The `func` keyword, followed by the name of the function, a list of parameters, 
-an _optional_ return value denotes a function signature. A function itself is
-a function signature, followed by a block. A pair of curly braces `{}` denote
-a block.
+Functions are defined with the `func` keyword, followed by an identifier, a parameter list, and a block:
 
-```
-// "func" Iden "(" ParameterList ")" [ "->" Type ] Block;
+    func foo() {
+        ...
+    }
 
-// optional return value!
-func do_stuff() {
-    // this returns nothing
-}
+This function does not return a type, and takes no parameters. It is called by specifiying the name of the function `foo`, followed by the parameters to pass (if any):
 
-// return value!
-func foobar() -> int {
-
-}
-```
+    foo(); // no params, empty parenthesis!
 
 ## Function Parameters
-An identifier, followed by a colon and a Type denote a function parameter. Function
-parameters must go in the function signature, between the parenthesis after the
-functions identifier (name).
+Types are defined almost identically to a variable declaration. They must specify a type, i.e. the compiler will not allow inference. Parameters are specified in the parenthesis after the identifier of a function:
 
 ```
-// Parameter = Iden ":" Type
-// ParameterList = { Parameter "," }
-func print_value(a: int) {
-    // do stuff with a
-}
-```
-
-As you can see, the syntax is almost like a variable. A parameter has a
-name, followed by a colon `:`, and a type. Yet there are differences. You 
-must specify the parameters type, and the parameter **cannot** have a 
-default value:
-
-```
-// note, these are examples that will ERROR!
-
-// default values!
-func add(a: int = 5, b: int = 5) { // ERROR!
+func print_value(a: int, b: int, c: int) {
     ...
 }
+```
 
-// no types!
-func add(a, b) { // ERROR!
-    ...
+The mutability rule still applies here, these parameters are immutable and cannot be changed unless you specify so:
+
+```
+func do_stuff(mut a: int, b: int) {
+    a = 21; // :)
+    b = a; // :(
 }
 ```
 
 ## Function Return Types
-A function that has no return type specified will return nothing. The function in the
-example above returns an integer. An arrow operator `->` followed by the Type `T` to
-return specifies a return type.
+A function that has no return type specified will return nothing. The function in the example above returns an integer. An arrow operator `->` followed by a Type denotes a function.
 
 ```
-// returns an integer
 func add(a: int) -> int {
-    // return keyword specifies what to return from the function
+    // return keyword specifies what 
+    // to return from the function
     return a + 1;
 }
 ```
 
-## Single Line Functions
-We've introduced some syntactic sugar for single line functions, instead of
-using two curly braces to denote a block, you can use the association 
-operator  `=>`:
-
-    func add(a: int, b: int) -> int => return a + b;
-
-## Function Prototypes
-Function prototypes are for interoperability with C. They help the Ark compiler
-know what types a function should take that you are calling to. It also acts
-as a "dummy" function so that the compiler knows that you aren't calling a 
-non-existent function.
-
-A function signature, followed by a semi-colon (instead of a block) will denote
-a function prototype:
+We can also return other Types:
 
 ```
-func function_prototype() -> int;
-func function_prototype_returns_nothing();
+func foo() -> SomeStructure {
+    
+}
+
+func bar() -> []int {
+    
+}
+
+func baz() -> ^SomeStructure {
+    
+}
+
+func foobar() -> (int, f64) {
+    
+}
+```
+
+## C Interop
+Ark is built in a way where you do not need to worry about defining functions before use, the compiler will know about all the functions you define. However, we still allow for defining a functions prototype for C interoperability. If you wish to use a function like `printf`, you can specify the prototype for it, so that the compiler knows what the functions arguments are and what it returns. It doesn't need to know about the implementation of the function itself.
+
+Note that Ark will allow you to specify variadic arguments with ellipses `...`, though this is not a feature that you can utilise in code, and is soley for C interop.
+
+```
+[c] func printf(fmt: str, ...) -> int;
 ```
 
 ## Anonymous Functions
-
-Functions do not have to specify a name; these are anonymous functions, i.e.
-they are not bound to a name:
+Functions are a type, you can pass them to other functions. In cases where you do not want (or need) to define a function, you can pass an anonymous function like so:
 
 ```
-func do_stuff(fn: func(): int) {
+// this takes a function that returns an integer
+// and no params
+func do_stuff(fn: func() -> int) {
     C::printf("%d\n", fn());
 }
 
 func main() -> int {
-    do_stuff(func(): int { return 123; });
+    // here we pass an anonymous function
+    // to be invoked by `do_stuff`
+    do_stuff(func() -> int { return 123; });
     return 0;
 }
 ```
 
 As you can see, the first function took a function as a parameter. You can pass
-functions as first-class function pointers.This is useful when
+functions as first-class function pointers. This is useful when
 sorting lists, making callbacks, etc.
 
 ## Program Arguments
-If you need the arguments passed to your program, you can modify the main
-functions arguments to take the amount of arguments passed, and a pointer
-to the argument list:
+If you want to manipulate the arguments passed into your program at execution, you can specify the following parameters in your main function:
 
 ```
 [c] func printf(fmt: str, ...);
 
 func main(argc: int, argv: ^str) -> int {
     C::printf("%d %s\n", argc, ^argv);
-
     return 0;
 }
 ```
 
 ## Variadic Functions
-A variadic function is a function that can take a variable amount of arguments.
-An ellipses at the end of parameter list denotes a variadic function.
+A variadic function is a function that can take a variable amount of arguments. An ellipses at the end of parameter list denotes a variadic function. **Note that this is for interoperability in C, and cannot be used normally in code.**
 
 ```
 func do_stuff(a: int, ...) {
 
 }
 ```
-
-The above example shows a function that takes a variable amount of arguments. Note 
-that this is for interoperability with C, for instance the `printf` function. 
-This means that there is no way that you can get the arguments in Ark.
