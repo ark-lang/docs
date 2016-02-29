@@ -1,0 +1,3 @@
+Ark is a programming language that was created as a replacement for the C language. We want a modern language that is powerful, and performant, yet minimal in its toolset. Of course everyone has a different vision of their ideal language, this is ours.
+
+The language is currently implemented in Go. We use the LLVM framework for its backend as it has a large array of optimisations and is very widely supported.
