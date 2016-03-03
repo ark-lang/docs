@@ -1,1 +1,1 @@
-Now onto the language features! The first thing you must know is 
+One of the basic concepts of any programming language are variables.
