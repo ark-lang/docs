@@ -1,9 +1,9 @@
-Attributes are used to modify and restrict behaviour on certain declarations. An attribute is denoted with square brackets `[]` that surround the attributes identifier, followed by an optional "=" symbol and a value.
+Attributes are used to modify and restrict behaviour on certain declarations. An attribute is denoted with a hash symbol followed by square brackets `#[]` that surround the attributes identifier, followed by an optional "=" symbol and a value.
 
 ## Examples
 The following will mark the function `foo` as deprecated. This will produce a warning on compilation.
 
-	[deprecated]
+	#[deprecated]
 	func foo() {
 
 	}
@@ -17,7 +17,7 @@ This next example specifies that the following declaration is unused. This attri
 
 		// despite being unused, 
 		// the compiler will not complain
-		[unused] y := 0; 
+		#[unused] y := 0; 
 	}
 
 ## Attribute List

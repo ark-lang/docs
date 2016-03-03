@@ -115,3 +115,24 @@ Any type that you introduce should be in PascalCase:
     };
     
     type JonathanBlow []int;
+
+## Initializers
+Initializers should have a space before them _if the type is present_.
+
+    type Foo struct {
+        
+    };
+    
+    foo := Foo {
+              ^ notice the space here!        
+    };
+    
+### Structures
+Structure initializers should _always_ take up multiple lines:
+
+    foo := Foo {
+        field0: ...,
+        field1: ...,
+        field2: ...,    
+    };
+    
